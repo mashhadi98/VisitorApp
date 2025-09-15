@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="15.0.1" />
+		<PackageReference Include="FluentValidation" Version="12.0.0" />
+		<PackageReference Include="MediatR" Version="13.0.0" />
+		<PackageReference Include="X.PagedList" Version="10.5.9" />
+		<PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\VisitorApp.Domain\VisitorApp.Domain.csproj" />
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
+</Project>

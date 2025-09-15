@@ -1,0 +1,51 @@
+@VisitorApp.API_HostAddress = http://localhost:5176
+
+GET {{VisitorApp.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+# Get all products (paginated)
+GET {{VisitorApp.API_HostAddress}}/api/v1/products?page=1&pageSize=10
+Accept: application/json
+
+###
+
+# Create a product
+POST {{VisitorApp.API_HostAddress}}/api/v1/products
+Content-Type: application/json
+
+{
+    "title": "Test Product",
+    "description": "Test Description",
+    "isActive": true
+}
+
+###
+
+# Change product state (PUT request with only route parameter)
+PUT {{VisitorApp.API_HostAddress}}/api/v1/products/change-state/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{}
+
+###
+
+# Update product
+PUT {{VisitorApp.API_HostAddress}}/api/v1/products/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "title": "Updated Product",
+    "description": "Updated Description",
+    "isActive": false
+}
+
+###
+
+# Delete product
+DELETE {{VisitorApp.API_HostAddress}}/api/v1/products/550e8400-e29b-41d4-a716-446655440000
+Accept: application/json
+
+###

@@ -1,0 +1,77 @@
+﻿using VisitorApp.Domain.Common.Contracts;
+using VisitorApp.Domain.Features.Audit;
+using VisitorApp.Domain.Features.Catalog.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace VisitorApp.Persistence.Common.Context;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext()
+    {
+    }
+
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+
+    public DbSet<AuditLog> AuditLogs { get; set; } = default!;
+    public DbSet<Product> Products { get; set; } = default!;
+
+
+    public override int SaveChanges()
+    {
+        ApplyConcurrencyVersionBump();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        ApplyConcurrencyVersionBump();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+    
+    private void ApplyConcurrencyVersionBump()
+    {
+        foreach (var entry in ChangeTracker.Entries<IHasConcurrencyVersion>())
+        {
+            if (entry.State == EntityState.Modified)
+            {
+                // Versionی که کلاینت فرستاده (قدیمیِ خودش)
+                var prop = entry.Property(e => e.Version);
+                var clientVersion = prop.CurrentValue;
+
+                // شرط WHERE: Version = @clientVersion
+                prop.OriginalValue = clientVersion;
+
+                // SET Version = clientVersion + 1
+                prop.CurrentValue = clientVersion + 1;
+            }
+            else if (entry.State == EntityState.Deleted)
+            {
+                // حذف هم با شرط Version انجام شود
+                var prop = entry.Property(e => e.Version);
+                prop.OriginalValue = prop.CurrentValue;
+            }
+            // EntityState.Added نیاز به کاری ندارد (Version = 0 کافی است)
+        }
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        foreach (var et in modelBuilder.Model.GetEntityTypes())
+        {
+            if (typeof(IHasConcurrencyVersion).IsAssignableFrom(et.ClrType))
+            {
+                modelBuilder.Entity(et.ClrType)
+                    .Property<long>(nameof(IHasConcurrencyVersion.Version));
+                    //.IsConcurrencyToken();
+            }
+        }
+
+        // Now use the fixed configuration classes
+        modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
+
+        base.OnModelCreating(modelBuilder);
+    }
+} 
