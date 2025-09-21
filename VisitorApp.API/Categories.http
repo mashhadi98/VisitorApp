@@ -1,0 +1,91 @@
+### Variables
+@baseUrl = https://localhost:7101
+@categoryId = {{CreateCategory.response.body.data.id}}
+
+### 1. Create Category
+POST {{baseUrl}}/api/Categories
+Content-Type: application/json
+
+{
+  "name": "لپ تاپ",
+  "description": "انواع لپ تاپ و کامپیوتر قابل حمل",
+  "isActive": true
+}
+
+### 2. Get Category by ID
+GET {{baseUrl}}/api/Categories/{{categoryId}}
+
+### 3. Update Category
+PUT {{baseUrl}}/api/Categories/{{categoryId}}
+Content-Type: application/json
+
+{
+  "id": "{{categoryId}}",
+  "name": "لپ تاپ و رایانه",
+  "description": "انواع لپ تاپ، کامپیوتر قابل حمل و رایانه شخصی",
+  "isActive": true
+}
+
+### 4. Get Paginated Categories
+GET {{baseUrl}}/api/Categories?page=1&pageSize=10
+
+### 5. Get Paginated Categories with Filter
+GET {{baseUrl}}/api/Categories
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 10,
+  "filter": {
+    "name": "لپ",
+    "isActive": true
+  }
+}
+
+### 6. Get Categories Dropdown
+GET {{baseUrl}}/api/Categories/dropdown
+
+### 7. Change Category State (Activate)
+PATCH {{baseUrl}}/api/Categories/{{categoryId}}/state
+Content-Type: application/json
+
+{
+  "id": "{{categoryId}}",
+  "isActive": true
+}
+
+### 8. Change Category State (Deactivate)
+PATCH {{baseUrl}}/api/Categories/{{categoryId}}/state
+Content-Type: application/json
+
+{
+  "id": "{{categoryId}}",
+  "isActive": false
+}
+
+### 9. Create Another Category
+POST {{baseUrl}}/api/Categories
+Content-Type: application/json
+
+{
+  "name": "موبایل",
+  "description": "تلفن همراه و لوازم جانبی",
+  "isActive": true
+}
+
+### 10. Create Product with Category
+POST {{baseUrl}}/api/Products
+Content-Type: application/json
+
+{
+  "title": "MacBook Pro",
+  "description": "لپ تاپ حرفه‌ای اپل",
+  "categoryId": "{{categoryId}}",
+  "isActive": true
+}
+
+### 11. Delete Category (should fail if has related products)
+DELETE {{baseUrl}}/api/Categories/{{categoryId}}
+
+### 12. Get All Categories with Products Count (if supported)
+GET {{baseUrl}}/api/Categories?includeProductCount=true 

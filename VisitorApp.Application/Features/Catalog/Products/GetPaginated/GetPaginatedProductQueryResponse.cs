@@ -6,4 +6,6 @@ public class GetPaginatedProductQueryResponse
     public string Title { get; set; }
     public string? Description { get; set; }
     public bool IsActive { get; set; }
+    public Guid? CategoryId { get; set; }
+    public string? CategoryName { get; set; }
 } 

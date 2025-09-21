@@ -25,6 +25,10 @@ public class UpdateProductCommandHandler(IRepository<Product> repository, IMappe
         {
             item.IsActive = request.IsActive ?? false;
         }
+        if (request.CategoryId != null)
+        {
+            item.CategoryId = request.CategoryId;
+        }
 
         await repository.UpdateAsync(entity: item, autoSave: true, cancellationToken: cancellationToken);
         var result = _mapper.Map<UpdateProductCommandResponse>(item);

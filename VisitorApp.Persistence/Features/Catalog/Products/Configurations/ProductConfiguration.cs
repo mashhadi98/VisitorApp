@@ -18,6 +18,19 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.HasKey(d => d.Id);
 
+        builder.Property(d => d.Title)
+            .IsRequired()
+            .HasMaxLength(200);
+
+        builder.Property(d => d.Description)
+            .HasMaxLength(1000);
+
+        // Configure relationship with Category
+        builder.HasOne(d => d.Category)
+            .WithMany()
+            .HasForeignKey(d => d.CategoryId)
+            .OnDelete(DeleteBehavior.SetNull);
+
         builder.Property(d => d.Version).IsConcurrencyToken();
     }
 }

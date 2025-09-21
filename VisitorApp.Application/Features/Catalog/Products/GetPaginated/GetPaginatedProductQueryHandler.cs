@@ -30,6 +30,8 @@ public class GetPaginatedProductQueryHandler(IRepository<Product> repository) : 
             Id = x.Id,
             IsActive = x.IsActive,
             Title = x.Title,
+            CategoryId = x.CategoryId,
+            CategoryName = x.Category != null ? x.Category.Name : null,
         }, cancellationToken);
 
         return result;
