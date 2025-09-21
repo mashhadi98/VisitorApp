@@ -1,0 +1,172 @@
+### Variables
+@baseUrl = https://localhost:7101
+@filePath = uploads/images/test_image.jpg
+
+### 1. Upload a single file
+POST {{baseUrl}}/api/Files/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="File"; filename="test-image.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-image.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="Folder"
+
+images
+--WebAppBoundary
+Content-Disposition: form-data; name="GenerateUniqueFileName"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ExpectedFileType"
+
+Image
+--WebAppBoundary--
+
+### 2. Upload image with processing
+POST {{baseUrl}}/api/Files/upload-image
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-image.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="folder"
+
+images
+--WebAppBoundary
+Content-Disposition: form-data; name="width"
+
+800
+--WebAppBoundary
+Content-Disposition: form-data; name="height"
+
+600
+--WebAppBoundary
+Content-Disposition: form-data; name="quality"
+
+90
+--WebAppBoundary
+Content-Disposition: form-data; name="createThumbnail"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="thumbnailSize"
+
+200
+--WebAppBoundary--
+
+### 3. Upload multiple files
+POST {{baseUrl}}/api/Files/upload-multiple
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="files"; filename="image1.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-image.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="files"; filename="document1.pdf"
+Content-Type: application/pdf
+
+< ./test-files/sample-document.pdf
+--WebAppBoundary
+Content-Disposition: form-data; name="folder"
+
+mixed
+--WebAppBoundary
+Content-Disposition: form-data; name="generateUniqueFileName"
+
+true
+--WebAppBoundary--
+
+### 4. Upload document file
+POST {{baseUrl}}/api/Files/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="File"; filename="document.pdf"
+Content-Type: application/pdf
+
+< ./test-files/sample-document.pdf
+--WebAppBoundary
+Content-Disposition: form-data; name="Folder"
+
+documents
+--WebAppBoundary
+Content-Disposition: form-data; name="ExpectedFileType"
+
+Document
+--WebAppBoundary
+Content-Disposition: form-data; name="MaxFileSize"
+
+5242880
+--WebAppBoundary--
+
+### 5. Check if file exists
+GET {{baseUrl}}/api/Files/exists?filePath={{filePath}}
+
+### 6. Get file info
+GET {{baseUrl}}/api/Files/info?filePath={{filePath}}
+
+### 7. Delete file
+DELETE {{baseUrl}}/api/Files?filePath={{filePath}}
+
+### 8. Advanced image upload with custom settings
+POST {{baseUrl}}/api/Files/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="File"; filename="avatar.png"
+Content-Type: image/png
+
+< ./test-files/avatar.png
+--WebAppBoundary
+Content-Disposition: form-data; name="Folder"
+
+avatars
+--WebAppBoundary
+Content-Disposition: form-data; name="ExpectedFileType"
+
+Image
+--WebAppBoundary
+Content-Disposition: form-data; name="ShouldResize"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ResizeWidth"
+
+400
+--WebAppBoundary
+Content-Disposition: form-data; name="ResizeHeight"
+
+400
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageQuality"
+
+80
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ThumbnailSize"
+
+100
+--WebAppBoundary
+Content-Disposition: form-data; name="AllowedExtensions"
+
+.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="AllowedExtensions"
+
+.jpeg
+--WebAppBoundary
+Content-Disposition: form-data; name="AllowedExtensions"
+
+.png
+--WebAppBoundary-- 

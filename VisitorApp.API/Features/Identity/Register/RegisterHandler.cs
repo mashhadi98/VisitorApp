@@ -9,4 +9,4 @@ public class RegisterHandler : PostEndpoint<RegisterRequest, RegisterCommandRequ
     public RegisterHandler(ISender sender, AutoMapper.IMapper mapper) : base(sender, mapper)
     {
     }
-} 
+}  
