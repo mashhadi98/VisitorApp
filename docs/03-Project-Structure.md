@@ -40,9 +40,8 @@ VisitorApp.API/
 │   │   ├── DependencyInjectionServiceExtensions.cs # DI config
 │   │   ├── LoggingServiceExtensions.cs          # Serilog config
 │   │   ├── MappingServiceExtensions.cs          # AutoMapper config
-│   │   ├── MySqlServiceExtensions.cs            # MySQL config
-│   │   ├── PipelineConfigurationExtensions.cs   # Middleware pipeline
-│   │   └── PostgreSqlServiceExtensions.cs       # PostgreSQL config
+│   │   ├── DatabaseServiceExtensions.cs         # SQL Server config
+│   │   └── PipelineConfigurationExtensions.cs   # Middleware pipeline
 │   │
 │   ├── Endpoints/               # Base Classes for FastEndpoints
 │   │   ├── ApiTypes.cs            # Enum for HTTP methods

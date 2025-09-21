@@ -1,7 +1,6 @@
 using VisitorApp.Persistence.Common.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
@@ -28,15 +27,21 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
         
         if (string.IsNullOrEmpty(connectionString))
         {
-            // Use the same server as configured in launchSettings.json for consistency
-            connectionString = "Server=192.168.10.150;Port=11002;Database=VisitorAppDb;Uid=root;Pwd=Admin123!";
+            // Default SQL Server connection string with Windows Authentication
+            connectionString = "Server=localhost,11746;Database=VisitorAppDb;Trusted_Connection=True;TrustServerCertificate=True;";
         }
         
         var migrationsAssembly = typeof(ApplicationDbContext).Assembly.GetName().Name;
         
-        optionsBuilder.UseMySql(connectionString,
-            ServerVersion.Create(8, 0, 21, ServerType.MySql),
-            options => options.MigrationsAssembly(migrationsAssembly));
+        optionsBuilder.UseSqlServer(connectionString,
+            options => 
+            {
+                options.MigrationsAssembly(migrationsAssembly);
+                options.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null);
+            });
 
         return new ApplicationDbContext(optionsBuilder.Options);
     }

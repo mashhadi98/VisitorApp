@@ -1,11 +1,13 @@
 ﻿using VisitorApp.Domain.Common.Contracts;
 using VisitorApp.Domain.Features.Audit;
 using VisitorApp.Domain.Features.Catalog.Entities;
+using VisitorApp.Domain.Features.Identity.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace VisitorApp.Persistence.Common.Context;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {
     public ApplicationDbContext()
     {
@@ -68,6 +70,9 @@ public class ApplicationDbContext : DbContext
                     //.IsConcurrencyToken();
             }
         }
+
+        // Configure OpenIddict entities
+        modelBuilder.UseOpenIddict();
 
         // Now use the fixed configuration classes
         modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);

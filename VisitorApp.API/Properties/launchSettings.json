@@ -16,7 +16,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionStrings__ApplicationDb": "Server=192.168.10.150;Port=11002;Database=VisitorAppDb;Uid=root;Pwd=Admin123!",
+        "ConnectionStrings__ApplicationDb": "Server=localhost,11746;Database=VisitorAppDb;Trusted_Connection=True;TrustServerCertificate=True;",
         "ErrorResponse__Validation__Title": "Validation failed",
         "ErrorResponse__Validation__Details": "One or more validation errors occurred.",
         "ErrorResponse__BadRequest__Title": "Bad Request",

@@ -1,0 +1,41 @@
+### Variables - SQL Server Configuration
+@baseUrl = https://localhost:7001
+@api = {{baseUrl}}/api
+
+### Register a new user (SQL Server)
+POST {{api}}/identity/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "Test123!@#",
+  "confirmPassword": "Test123!@#",
+  "firstName": "Test",
+  "lastName": "User"
+}
+
+### Login user (SQL Server)
+POST {{api}}/identity/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "Test123!@#",
+  "rememberMe": false
+}
+
+### OAuth 2.0 Token endpoint (Password flow) - SQL Server Backend
+POST {{baseUrl}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=test@example.com
+&password=Test123!@#
+&client_id=visitor-app-client
+&client_secret=visitor-app-secret
+
+### Test Health Check
+GET {{baseUrl}}/health
+
+### Note: Database is now using SQL Server LocalDB
+### Connection String: Server=(localdb)\mssqllocaldb;Database=VisitorAppDb;Trusted_Connection=true 

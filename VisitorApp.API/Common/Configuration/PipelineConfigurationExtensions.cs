@@ -32,6 +32,10 @@ public static class PipelineConfigurationExtensions
         // Configure security and routing
         app.UseHttpsRedirection();
 
+        // Configure authentication and authorization
+        app.UseAuthentication();
+        app.UseAuthorization();
+
         // Configure FastEndpoints with API versioning and Swagger
         app.UseFastEndpoints(config =>
         {
