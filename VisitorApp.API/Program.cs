@@ -17,10 +17,8 @@ builder.Services.AddApiDocumentationServices();
 builder.Services.AddIdentityServices();
 builder.Services.AddOpenIddictServices(builder.Configuration);
 
-// Add Authentication and Authorization
-builder.Services.AddAuthentication()
-    .AddCookie()
-    .AddBearerToken();
+// Add JWT Authentication
+builder.Services.AddJwtAuthentication(builder.Configuration);
     
 builder.Services.AddAuthorization();
 
@@ -32,6 +30,9 @@ await app.AddDatabaseApplication(builder.Configuration);
 
 // Seed OpenIddict data
 await app.SeedOpenIddictDataAsync();
+
+// Seed default admin user
+await VisitorApp.Persistence.Features.Identity.DataSeeder.SeedDataAsync(app.Services);
 
 // Configure the HTTP request pipeline
 app.ConfigurePipeline();

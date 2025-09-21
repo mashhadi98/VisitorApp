@@ -1,0 +1,76 @@
+### Admin Login Test - VisitorApp (JWT Token Implementation)
+
+### Variables
+@baseUrl = https://localhost:6070
+@api = {{baseUrl}}/api
+
+### Login with Default Admin User
+POST {{api}}/identity/login
+Content-Type: application/json
+
+{
+  "email": "admin@visitorapp.com",
+  "password": "Admin123!@#",
+  "rememberMe": false
+}
+
+### Expected Response (JWT Token):
+# {
+#   "userId": "guid-here",
+#   "email": "admin@visitorapp.com",
+#   "firstName": "System",
+#   "lastName": "Administrator", 
+#   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", // Real JWT Token
+#   "refreshToken": "base64-encoded-refresh-token",
+#   "expiresAt": "2024-XX-XXTXX:XX:XX.XXXZ",
+#   "isSuccess": true,
+#   "message": "Login successful"
+# }
+
+### JWT Token Claims Include:
+# - NameIdentifier: User ID
+# - Email: User Email  
+# - GivenName: First Name
+# - Surname: Last Name
+# - Name: Full Name
+# - Role: Admin
+# - user_id: User ID
+# - is_active: true
+# - jti: JWT ID (unique)
+
+### Test Login with Wrong Password (Should throw UnauthorizedAccessException)
+POST {{api}}/identity/login
+Content-Type: application/json
+
+{
+  "email": "admin@visitorapp.com",
+  "password": "WrongPassword123!",
+  "rememberMe": false
+}
+
+### Test Login with Non-existent User (Should throw UnauthorizedAccessException)
+POST {{api}}/identity/login
+Content-Type: application/json
+
+{
+  "email": "nonexistent@example.com",
+  "password": "SomePassword123!",
+  "rememberMe": false
+}
+
+### JWT Token Verification
+# You can decode JWT tokens at: https://jwt.io
+# Secret Key: VisitorApp-Super-Secret-Key-For-JWT-Token-Generation-2024-MinLength32Chars
+# Issuer: VisitorApp
+# Audience: VisitorApp-API
+# Algorithm: HS256
+
+### Admin Credentials Info:
+# Email: admin@visitorapp.com
+# Password: Admin123!@#
+# Name: System Administrator
+# Role: Admin
+# Token Lifetime: 1 hour
+# Refresh Token Lifetime: 30 days
+#
+# Note: These credentials are automatically created when the application starts. 

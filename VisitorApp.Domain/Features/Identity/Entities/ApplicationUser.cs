@@ -56,4 +56,7 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditable, IHasConcurrencyVe
         IsActive = true;
         SetUpdated();
     }
+    
+    // Navigation property for refresh tokens
+    public ICollection<UserRefreshToken> RefreshTokens { get; set; } = new List<UserRefreshToken>();
 } 

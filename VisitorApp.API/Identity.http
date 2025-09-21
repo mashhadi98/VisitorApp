@@ -24,6 +24,15 @@ Content-Type: application/json
   "rememberMe": false
 }
 
+### Refresh Token - Use tokens from login response
+POST {{api}}/identity/refresh-token
+Content-Type: application/json
+
+{
+  "accessToken": "YOUR_ACCESS_TOKEN_FROM_LOGIN",
+  "refreshToken": "YOUR_REFRESH_TOKEN_FROM_LOGIN"
+}
+
 ### OAuth 2.0 Token endpoint (Password flow) - SQL Server Backend
 POST {{baseUrl}}/connect/token
 Content-Type: application/x-www-form-urlencoded
@@ -31,6 +40,15 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=password
 &username=test@example.com
 &password=Test123!@#
+&client_id=visitor-app-client
+&client_secret=visitor-app-secret
+
+### OAuth 2.0 Refresh Token endpoint (Refresh Token flow)
+POST {{baseUrl}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=refresh_token
+&refresh_token=YOUR_REFRESH_TOKEN_FROM_OAUTH
 &client_id=visitor-app-client
 &client_secret=visitor-app-secret
 
