@@ -1,0 +1,197 @@
+### Variables
+@baseUrl = https://localhost:7101
+@productId = {{createProduct.response.body.id}}
+
+### 1. Create Product with Image and Price
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول نمونه با تصویر و قیمت
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+این محصول دارای تصویر و قیمت است
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+250000
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="CategoryId"
+
+{{$guid}}
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="product-image.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-product.jpg
+--WebAppBoundary--
+
+### 2. Create Product without Image (with Price)
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول بدون تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول ساده با قیمت
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+150000
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary--
+
+### 3. Update Product with New Image and Price
+PUT {{baseUrl}}/api/Products/{{productId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{productId}}
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول بروزرسانی شده
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+300000
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="new-product-image.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-product-2.jpg
+--WebAppBoundary--
+
+### 4. Update Product - Remove Image
+PUT {{baseUrl}}/api/Products/{{productId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{productId}}
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول بدون تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+200000
+--WebAppBoundary
+Content-Disposition: form-data; name="RemoveExistingImage"
+
+true
+--WebAppBoundary--
+
+### 5. Create Expensive Product with PNG Image
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول گران با تصویر PNG
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با قیمت بالا و فرمت PNG
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+1500000
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="product.png"
+Content-Type: image/png
+
+< ./test-files/sample-product.png
+--WebAppBoundary--
+
+### 6. Get Product by ID (with price and image info)
+GET {{baseUrl}}/api/Products/{{productId}}
+
+### 7. Get All Products (paginated with price and image info)
+GET {{baseUrl}}/api/Products?PageNumber=1&PageSize=10
+
+### 8. Create Budget Product (No Image)
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول ارزان
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با قیمت پایین بدون تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+50000
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary--
+
+### 9. Update Product Price Only
+PUT {{baseUrl}}/api/Products/{{$guid}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{$guid}}
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+180000
+--WebAppBoundary--
+
+### 10. Create Premium Product with WebP Image
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول پریمیوم
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با کیفیت بالا و قیمت مناسب
+--WebAppBoundary
+Content-Disposition: form-data; name="Price"
+
+750000
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="premium.webp"
+Content-Type: image/webp
+
+< ./test-files/premium-product.webp
+--WebAppBoundary-- 

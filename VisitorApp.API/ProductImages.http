@@ -1,0 +1,231 @@
+### Variables
+@baseUrl = https://localhost:7101
+@productId = {{createProduct.response.body.id}}
+
+### 1. Create Product with Image
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول نمونه با تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+این محصول دارای تصویر است
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="CategoryId"
+
+{{$guid}}
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="product-image.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-product.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ThumbnailSize"
+
+200
+--WebAppBoundary
+Content-Disposition: form-data; name="ResizeImage"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="MaxImageWidth"
+
+800
+--WebAppBoundary
+Content-Disposition: form-data; name="MaxImageHeight"
+
+600
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageQuality"
+
+90
+--WebAppBoundary--
+
+### 2. Create Product without Image (Simple)
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول ساده بدون تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+این محصول تصویر ندارد
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary--
+
+### 3. Update Product with New Image
+PUT {{baseUrl}}/api/Products/{{productId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{productId}}
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول بروزرسانی شده
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="new-product-image.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/sample-product-2.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ResizeImage"
+
+true
+--WebAppBoundary--
+
+### 4. Update Product - Remove Existing Image
+PUT {{baseUrl}}/api/Products/{{productId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{productId}}
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول بدون تصویر
+--WebAppBoundary
+Content-Disposition: form-data; name="RemoveExistingImage"
+
+true
+--WebAppBoundary--
+
+### 5. Create Product with Large Image Settings
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول با تصویر بزرگ
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با تنظیمات تصویر بزرگ و کیفیت بالا
+--WebAppBoundary
+Content-Disposition: form-data; name="IsActive"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="large-product.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/large-product.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="ThumbnailSize"
+
+300
+--WebAppBoundary
+Content-Disposition: form-data; name="ResizeImage"
+
+true
+--WebAppBoundary
+Content-Disposition: form-data; name="MaxImageWidth"
+
+1200
+--WebAppBoundary
+Content-Disposition: form-data; name="MaxImageHeight"
+
+800
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageQuality"
+
+95
+--WebAppBoundary--
+
+### 6. Get Product by ID (with image info)
+GET {{baseUrl}}/api/Products/{{productId}}
+
+### 7. Get All Products (paginated with image info)
+GET {{baseUrl}}/api/Products?PageNumber=1&PageSize=10
+
+### 8. Create Product with PNG Image
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول با تصویر PNG
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با فرمت PNG
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="product.png"
+Content-Type: image/png
+
+< ./test-files/sample-product.png
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary--
+
+### 9. Create Product with WebP Image
+POST {{baseUrl}}/api/Products
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Title"
+
+محصول با تصویر WebP
+--WebAppBoundary
+Content-Disposition: form-data; name="Description"
+
+محصول با فرمت WebP (مدرن)
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="product.webp"
+Content-Type: image/webp
+
+< ./test-files/sample-product.webp
+--WebAppBoundary--
+
+### 10. Update Product - Add Image to Existing Product without Image
+PUT {{baseUrl}}/api/Products/{{$guid}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Id"
+
+{{$guid}}
+--WebAppBoundary
+Content-Disposition: form-data; name="ImageFile"; filename="added-later.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/added-later.jpg
+--WebAppBoundary
+Content-Disposition: form-data; name="CreateThumbnail"
+
+true
+--WebAppBoundary-- 

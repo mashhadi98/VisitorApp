@@ -32,6 +32,11 @@ public class GetPaginatedProductQueryHandler(IRepository<Product> repository) : 
             Title = x.Title,
             CategoryId = x.CategoryId,
             CategoryName = x.Category != null ? x.Category.Name : null,
+            Price = x.Price,
+            ImageUrl = x.ImageUrl,
+            ImageFileName = x.ImageFileName,
+            ImageFileSize = x.ImageFileSize,
+            HasImage = !string.IsNullOrEmpty(x.ImagePath)
         }, cancellationToken);
 
         return result;

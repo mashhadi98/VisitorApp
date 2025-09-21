@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace VisitorApp.Application.Features.Catalog.Products.Update;
 
 public class UpdateProductCommandRequest : IRequestBase<UpdateProductCommandResponse>
@@ -7,4 +9,9 @@ public class UpdateProductCommandRequest : IRequestBase<UpdateProductCommandResp
     public string? Description { get; set; }
     public bool? IsActive { get; set; }
     public Guid? CategoryId { get; set; }
+    public decimal? Price { get; set; }
+    
+    // Image upload properties
+    public IFormFile? ImageFile { get; set; }
+    public bool? RemoveExistingImage { get; set; } = false;
 }

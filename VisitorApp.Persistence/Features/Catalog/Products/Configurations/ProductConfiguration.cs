@@ -25,6 +25,26 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(d => d.Description)
             .HasMaxLength(1000);
 
+        builder.Property(d => d.Price)
+            .HasPrecision(18, 2)
+            .IsRequired();
+
+        // Configure image properties
+        builder.Property(d => d.ImagePath)
+            .HasMaxLength(500)
+            .IsRequired(false);
+
+        builder.Property(d => d.ImageUrl)
+            .HasMaxLength(1000)
+            .IsRequired(false);
+
+        builder.Property(d => d.ImageFileName)
+            .HasMaxLength(255)
+            .IsRequired(false);
+
+        builder.Property(d => d.ImageFileSize)
+            .IsRequired(false);
+
         // Configure relationship with Category
         builder.HasOne(d => d.Category)
             .WithMany()

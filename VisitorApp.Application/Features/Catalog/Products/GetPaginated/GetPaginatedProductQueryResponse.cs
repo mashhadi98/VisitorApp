@@ -8,4 +8,11 @@ public class GetPaginatedProductQueryResponse
     public bool IsActive { get; set; }
     public Guid? CategoryId { get; set; }
     public string? CategoryName { get; set; }
+    public decimal Price { get; set; }
+    
+    // Image information
+    public string? ImageUrl { get; set; }
+    public string? ImageFileName { get; set; }
+    public long? ImageFileSize { get; set; }
+    public bool HasImage { get; set; }
 } 

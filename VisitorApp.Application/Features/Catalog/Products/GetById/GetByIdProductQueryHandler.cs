@@ -23,7 +23,12 @@ public class GetByIdProductQueryHandler(IRepository<Product> repository, IMapper
             Description = item.Description,
             IsActive = item.IsActive,
             CategoryId = item.CategoryId,
-            CategoryName = item.Category?.Name
+            CategoryName = item.Category?.Name,
+            Price = item.Price,
+            ImageUrl = item.ImageUrl,
+            ImageFileName = item.ImageFileName,
+            ImageFileSize = item.ImageFileSize,
+            HasImage = item.HasImage
         };
 
         return result;
