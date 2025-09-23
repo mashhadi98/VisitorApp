@@ -28,7 +28,7 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
         if (string.IsNullOrEmpty(connectionString))
         {
             // Default SQL Server connection string with Windows Authentication
-            connectionString = "Server=localhost,11746;Database=VisitorAppDb;Trusted_Connection=True;TrustServerCertificate=True;";
+            connectionString = "Server=46.4.37.226\\MSSQLSERVER2022,51022;Database=FVisitorAppDb;User Id=FVisitorAppDb;Password=IW8J1et5j_jmnro*;TrustServerCertificate=True;";
         }
         
         var migrationsAssembly = typeof(ApplicationDbContext).Assembly.GetName().Name;
