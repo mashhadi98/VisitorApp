@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 using VisitorApp.Application.Common.Interfaces;
 using VisitorApp.Application.Common.Messaging;
 using VisitorApp.Domain.Features.Identity.Entities;
