@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Identity.Login;
 
 namespace VisitorApp.Application.Features.Identity.Login;
 

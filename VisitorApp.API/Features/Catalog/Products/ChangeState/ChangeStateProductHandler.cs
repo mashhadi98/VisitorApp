@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Products.ChangeState;
+using VisitorApp.Contract.Features.Catalog.Products.ChangeState;
 
 namespace VisitorApp.API.Features.Catalog.Products.ChangeState;
 

@@ -4,6 +4,7 @@ using VisitorApp.Application.Common.Interfaces;
 using VisitorApp.Application.Common.Messaging;
 using VisitorApp.Domain.Features.Identity.Entities;
 using VisitorApp.Domain.Common.ResponseMessages;
+using VisitorApp.Contract.Features.Identity.Users.ChangeState;
 
 namespace VisitorApp.Application.Features.Identity.Users.ChangeState;
 

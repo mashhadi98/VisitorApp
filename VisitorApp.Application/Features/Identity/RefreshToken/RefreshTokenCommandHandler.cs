@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using VisitorApp.Application.Features.Identity.Common;
 using MediatR;
+using VisitorApp.Contract.Features.Identity.RefreshToken;
 
 namespace VisitorApp.Application.Features.Identity.RefreshToken;
 

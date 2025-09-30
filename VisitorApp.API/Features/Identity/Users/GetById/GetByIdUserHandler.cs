@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.GetById;
+using VisitorApp.Contract.Features.Identity.Users.GetById;
 
 namespace VisitorApp.API.Features.Identity.Users.GetById;
 

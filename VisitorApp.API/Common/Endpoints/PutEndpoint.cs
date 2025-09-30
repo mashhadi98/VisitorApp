@@ -1,4 +1,4 @@
-﻿using VisitorApp.API.Common.Models;
+﻿using VisitorApp.Contract.Common;
 using VisitorApp.Application.Abstractions.Messaging;
 
 namespace VisitorApp.API.Common.Endpoints;

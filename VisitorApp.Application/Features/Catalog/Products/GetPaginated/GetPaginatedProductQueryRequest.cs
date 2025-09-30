@@ -1,3 +1,5 @@
+using VisitorApp.Contract.Features.Catalog.Products.GetPaginated;
+
 namespace VisitorApp.Application.Features.Catalog.Products.GetPaginated;
 
 public class GetPaginatedProductQueryRequest : Pagination<GetAllGroupsQueryFilter>, IRequestBase<PaginatedResponse<GetPaginatedProductQueryResponse>>

@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\VisitorApp.Contract\VisitorApp.Contract.csproj" />
 		<ProjectReference Include="..\VisitorApp.Domain\VisitorApp.Domain.csproj" />
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>

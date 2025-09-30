@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Categories.GetById;
+using VisitorApp.Contract.Features.Catalog.Categories.GetById;
 
 namespace VisitorApp.API.Features.Catalog.Categories.GetById;
 

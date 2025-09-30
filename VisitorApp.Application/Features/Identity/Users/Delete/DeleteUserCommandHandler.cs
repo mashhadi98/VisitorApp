@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Identity;
-using VisitorApp.Application.Common.Interfaces;
 using VisitorApp.Application.Common.Messaging;
-using VisitorApp.Domain.Features.Identity.Entities;
+using VisitorApp.Contract.Features.Identity.Users.Delete;
 using VisitorApp.Domain.Common.ResponseMessages;
+using VisitorApp.Domain.Features.Identity.Entities;
 
 namespace VisitorApp.Application.Features.Identity.Users.Delete;
 
 public class DeleteUserCommandHandler(
     UserManager<ApplicationUser> userManager,
-    IEnumerable<IValidatorService<DeleteUserCommandRequest, DeleteUserCommandResponse>> validators) 
+    IEnumerable<IValidatorService<DeleteUserCommandRequest, DeleteUserCommandResponse>> validators)
     : RequestHandlerBase<DeleteUserCommandRequest, DeleteUserCommandResponse>(validators)
 {
     public override async Task<DeleteUserCommandResponse> Handler(DeleteUserCommandRequest request, CancellationToken cancellationToken)
@@ -38,4 +38,4 @@ public class DeleteUserCommandHandler(
 
         return new DeleteUserCommandResponse { Id = request.Id };
     }
-} 
+}

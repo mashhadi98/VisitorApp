@@ -37,6 +37,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\VisitorApp.Application\VisitorApp.Application.csproj" />
+		<ProjectReference Include="..\VisitorApp.Contract\VisitorApp.Contract.csproj" />
 		<ProjectReference Include="..\VisitorApp.Infrastructure\VisitorApp.Infrastructure.csproj" />
 		<ProjectReference Include="..\VisitorApp.Persistence\VisitorApp.Persistence.csproj" />
 		<ProjectReference Include="..\Shared\Shared.csproj" />

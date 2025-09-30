@@ -5,6 +5,7 @@ using VisitorApp.Application.Common.Messaging;
 using VisitorApp.Application.Features.Identity.Common;
 using VisitorApp.Domain.Features.Identity.Entities;
 using VisitorApp.Domain.Common.DTOs;
+using VisitorApp.Contract.Features.Identity.Users.GetPaginated;
 
 namespace VisitorApp.Application.Features.Identity.Users.GetPaginated;
 

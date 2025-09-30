@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.ChangeState;
+using VisitorApp.Contract.Features.Identity.Users.ChangeState;
 
 namespace VisitorApp.API.Features.Identity.Users.ChangeState;
 

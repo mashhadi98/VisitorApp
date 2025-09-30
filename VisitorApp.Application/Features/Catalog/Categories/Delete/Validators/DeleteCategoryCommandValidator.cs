@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Catalog.Categories.Delete;
 
 namespace VisitorApp.Application.Features.Catalog.Categories.Delete.Validators;
 

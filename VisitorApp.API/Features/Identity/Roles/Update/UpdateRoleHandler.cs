@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Roles.Update;
+using VisitorApp.Contract.Features.Identity.Roles.Update;
 
 namespace VisitorApp.API.Features.Identity.Roles.Update;
 

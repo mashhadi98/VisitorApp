@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Catalog.Categories.Create;
 using VisitorApp.Domain.Features.Catalog.Entities;
 
 namespace VisitorApp.Application.Features.Catalog.Categories.Create;

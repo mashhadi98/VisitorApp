@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Categories.Update;
+using VisitorApp.Contract.Features.Catalog.Categories.Update;
 
 namespace VisitorApp.API.Features.Catalog.Categories.Update;
 

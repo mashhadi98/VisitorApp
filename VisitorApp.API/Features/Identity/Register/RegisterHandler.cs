@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Register;
+using VisitorApp.Contract.Features.Identity.Register;
 
 namespace VisitorApp.API.Features.Identity.Register;
 

@@ -1,16 +1,16 @@
 using AutoMapper;
-using VisitorApp.API.Features.Identity.Users.Create;
-using VisitorApp.API.Features.Identity.Users.Update;
-using VisitorApp.API.Features.Identity.Users.Delete;
-using VisitorApp.API.Features.Identity.Users.GetById;
-using VisitorApp.API.Features.Identity.Users.GetPaginated;
-using VisitorApp.API.Features.Identity.Users.ChangeState;
-using VisitorApp.API.Features.Identity.Roles.Create;
-using VisitorApp.API.Features.Identity.Roles.Update;
-using VisitorApp.API.Features.Identity.Roles.Delete;
-using VisitorApp.API.Features.Identity.Roles.GetById;
-using VisitorApp.API.Features.Identity.Roles.GetPaginated;
-using VisitorApp.API.Features.Identity.Roles.ChangeState;
+using VisitorApp.Contract.Features.Identity.Users.Create;
+using VisitorApp.Contract.Features.Identity.Users.Update;
+using VisitorApp.Contract.Features.Identity.Users.Delete;
+using VisitorApp.Contract.Features.Identity.Users.GetById;
+using VisitorApp.Contract.Features.Identity.Users.GetPaginated;
+using VisitorApp.Contract.Features.Identity.Users.ChangeState;
+using VisitorApp.Contract.Features.Identity.Roles.Create;
+using VisitorApp.Contract.Features.Identity.Roles.Update;
+using VisitorApp.Contract.Features.Identity.Roles.Delete;
+using VisitorApp.Contract.Features.Identity.Roles.GetById;
+using VisitorApp.Contract.Features.Identity.Roles.GetPaginated;
+using VisitorApp.Contract.Features.Identity.Roles.ChangeState;
 using VisitorApp.Application.Features.Identity.Users.Create;
 using VisitorApp.Application.Features.Identity.Users.Update;
 using VisitorApp.Application.Features.Identity.Users.Delete;
@@ -39,7 +39,7 @@ public class MappingProfile : Profile
         CreateMap<ChangeStateUserRequest, ChangeStateUserCommandRequest>();
         
         // Filter mappings
-        CreateMap<VisitorApp.API.Features.Identity.Users.GetPaginated.GetPaginatedUserFilter, VisitorApp.Application.Features.Identity.Users.GetPaginated.GetPaginatedUserFilter>();
+        CreateMap<VisitorApp.Contract.Features.Identity.Users.GetPaginated.GetPaginatedUserFilter, VisitorApp.Application.Features.Identity.Users.GetPaginated.GetPaginatedUserFilter>();
 
         // Role mappings - API to Application
         CreateMap<CreateRoleRequest, CreateRoleCommandRequest>();
@@ -50,6 +50,6 @@ public class MappingProfile : Profile
         CreateMap<ChangeStateRoleRequest, ChangeStateRoleCommandRequest>();
         
         // Filter mappings
-        CreateMap<VisitorApp.API.Features.Identity.Roles.GetPaginated.GetPaginatedRoleFilter, VisitorApp.Application.Features.Identity.Roles.GetPaginated.GetPaginatedRoleFilter>();
+        CreateMap<VisitorApp.Contract.Features.Identity.Roles.GetPaginated.GetPaginatedRoleFilter, VisitorApp.Application.Features.Identity.Roles.GetPaginated.GetPaginatedRoleFilter>();
     }
 } 

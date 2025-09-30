@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.Create;
+using VisitorApp.Contract.Features.Identity.Users.Create;
 
 namespace VisitorApp.API.Features.Identity.Users.Create;
 

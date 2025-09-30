@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Categories.Create;
+using VisitorApp.Contract.Features.Catalog.Categories.Create;
 
 namespace VisitorApp.API.Features.Catalog.Categories.Create;
 

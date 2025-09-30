@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.Update;
+using VisitorApp.Contract.Features.Identity.Users.Update;
 
 namespace VisitorApp.API.Features.Identity.Users.Update;
 

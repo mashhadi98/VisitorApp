@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.Delete;
+using VisitorApp.Contract.Features.Identity.Users.Delete;
 
 namespace VisitorApp.API.Features.Identity.Users.Delete;
 

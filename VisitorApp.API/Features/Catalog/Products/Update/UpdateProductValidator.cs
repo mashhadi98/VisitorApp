@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using VisitorApp.Contract.Features.Catalog.Products.Update;
 
 namespace VisitorApp.API.Features.Catalog.Products.Update;
 

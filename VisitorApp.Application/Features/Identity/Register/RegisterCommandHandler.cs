@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Identity.Register;
 using VisitorApp.Domain.Features.Identity.Entities;
 
 namespace VisitorApp.Application.Features.Identity.Register;

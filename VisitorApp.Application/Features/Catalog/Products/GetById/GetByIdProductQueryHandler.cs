@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using VisitorApp.Contract.Features.Catalog.Products.GetById;
 using VisitorApp.Domain.Features.Catalog.Entities;
 
 namespace VisitorApp.Application.Features.Catalog.Products.GetById;

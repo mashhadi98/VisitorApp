@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json;
+using VisitorApp.API.Common.Models;
 
 namespace VisitorApp.API.Common.Middlewares;
 

@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Login;
+using VisitorApp.Contract.Features.Identity.Login;
 
 namespace VisitorApp.API.Features.Identity.Login;
 

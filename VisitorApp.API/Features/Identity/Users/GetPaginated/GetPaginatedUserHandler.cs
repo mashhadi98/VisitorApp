@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Users.GetPaginated;
+using VisitorApp.Contract.Features.Identity.Users.GetPaginated;
 
 namespace VisitorApp.API.Features.Identity.Users.GetPaginated;
 

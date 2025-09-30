@@ -1,3 +1,5 @@
+using VisitorApp.Contract.Features.Catalog.Categories.ChangeState;
+
 namespace VisitorApp.Application.Features.Catalog.Categories.ChangeState;
 
 public class ChangeStateCategoryCommandRequest : IRequestBase<ChangeStateCategoryCommandResponse>

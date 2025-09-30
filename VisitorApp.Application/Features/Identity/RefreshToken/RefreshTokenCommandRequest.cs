@@ -1,4 +1,5 @@
 using MediatR;
+using VisitorApp.Contract.Features.Identity.RefreshToken;
 
 namespace VisitorApp.Application.Features.Identity.RefreshToken;
 

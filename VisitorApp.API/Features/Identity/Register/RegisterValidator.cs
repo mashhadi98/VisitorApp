@@ -1,4 +1,5 @@
 using FluentValidation;
+using VisitorApp.Contract.Features.Identity.Register;
 
 namespace VisitorApp.API.Features.Identity.Register;
 

@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Products.GetPaginated;
+using VisitorApp.Contract.Features.Catalog.Products.GetPaginated;
 
 namespace VisitorApp.API.Features.Catalog.Products.GetPaginated;
 

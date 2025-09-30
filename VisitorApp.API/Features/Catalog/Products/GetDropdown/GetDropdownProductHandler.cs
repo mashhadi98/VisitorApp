@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Products.GetDropdown;
+using VisitorApp.Contract.Features.Catalog.Products.GetDropdown;
 
 namespace VisitorApp.API.Features.Catalog.Products.GetDropdown;
 

@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Catalog.Categories.Create;
 using VisitorApp.Domain.Common.ResponseMessages;
 
 namespace VisitorApp.Application.Features.Catalog.Categories.Create.Validators;

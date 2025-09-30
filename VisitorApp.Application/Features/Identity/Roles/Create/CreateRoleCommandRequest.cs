@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Identity.Roles.Create;
 
 namespace VisitorApp.Application.Features.Identity.Roles.Create;
 

@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Identity.Roles.Create;
+using VisitorApp.Contract.Features.Identity.Roles.Create;
 
 namespace VisitorApp.API.Features.Identity.Roles.Create;
 

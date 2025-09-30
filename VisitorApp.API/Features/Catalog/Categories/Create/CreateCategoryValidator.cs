@@ -1,4 +1,5 @@
 using FluentValidation;
+using VisitorApp.Contract.Features.Catalog.Categories.Create;
 
 namespace VisitorApp.API.Features.Catalog.Categories.Create;
 

@@ -1,4 +1,5 @@
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Identity.Roles.GetPaginated;
 using VisitorApp.Domain.Common.DTOs;
 
 namespace VisitorApp.Application.Features.Identity.Roles.GetPaginated;

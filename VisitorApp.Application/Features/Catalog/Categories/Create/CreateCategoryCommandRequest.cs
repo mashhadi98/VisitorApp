@@ -1,3 +1,5 @@
+using VisitorApp.Contract.Features.Catalog.Categories.Create;
+
 namespace VisitorApp.Application.Features.Catalog.Categories.Create;
 
 public class CreateCategoryCommandRequest : IRequestBase<CreateCategoryCommandResponse>

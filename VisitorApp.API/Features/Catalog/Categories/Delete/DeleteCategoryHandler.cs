@@ -1,4 +1,5 @@
 using VisitorApp.Application.Features.Catalog.Categories.Delete;
+using VisitorApp.Contract.Features.Catalog.Categories.Delete;
 
 namespace VisitorApp.API.Features.Catalog.Categories.Delete;
 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using VisitorApp.Contract.Features.Catalog.Products.Create;
 
 namespace VisitorApp.Application.Features.Catalog.Products.Create;
 

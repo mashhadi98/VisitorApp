@@ -1,3 +1,4 @@
+using VisitorApp.Contract.Features.Catalog.Categories.GetPaginated;
 using VisitorApp.Domain.Features.Catalog.Entities;
 
 namespace VisitorApp.Application.Features.Catalog.Categories.GetPaginated;
@@ -30,8 +31,6 @@ public class GetPaginatedCategoryQueryHandler(IRepository<Category> repository) 
             Name = x.Name,
             Description = x.Description,
             IsActive = x.IsActive,
-            CreatedAt = x.CreatedAt,
-            UpdatedAt = x.UpdatedAt,
         }, cancellationToken);
 
         return result;

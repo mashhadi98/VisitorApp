@@ -1,4 +1,5 @@
 ﻿using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Catalog.Products.Update;
 
 namespace VisitorApp.Application.Features.Catalog.Products.Update.Validators;
 

@@ -1,13 +1,13 @@
 using VisitorApp.Application.Common.DTOs;
-using VisitorApp.Application.Common.Interfaces;
 using VisitorApp.Application.Common.Messaging;
+using VisitorApp.Contract.Features.Catalog.Products.Update;
 using VisitorApp.Domain.Features.Catalog.Entities;
 
 namespace VisitorApp.Application.Features.Catalog.Products.Update;
 
 public class UpdateProductCommandHandler(
-    IRepository<Product> repository, 
-    IMapper _mapper, 
+    IRepository<Product> repository,
+    IMapper _mapper,
     IFileStorageService fileStorageService,
     IEnumerable<IValidatorService<UpdateProductCommandRequest, UpdateProductCommandResponse>> validators) : RequestHandlerBase<UpdateProductCommandRequest, UpdateProductCommandResponse>(validators)
 {
@@ -45,7 +45,7 @@ public class UpdateProductCommandHandler(
         await HandleImageOperations(item, request, cancellationToken);
 
         await repository.UpdateAsync(entity: item, autoSave: true, cancellationToken: cancellationToken);
-        
+
         var result = new UpdateProductCommandResponse
         {
             Id = item.Id,
@@ -114,11 +114,11 @@ public class UpdateProductCommandHandler(
             Folder = $"products/{productId}",
             ExpectedFileType = FileType.Image,
             GenerateUniqueFileName = true,
-            
+
             // Simple upload - no resize or thumbnail
             ShouldResize = false,
             CreateThumbnail = false,
-            
+
             // Security settings
             MaxFileSize = 5 * 1024 * 1024, // 5MB
             AllowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp", ".gif" }

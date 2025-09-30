@@ -1,5 +1,6 @@
 using FastEndpoints;
 using FluentValidation;
+using VisitorApp.Contract.Features.Identity.RefreshToken;
 
 namespace VisitorApp.API.Features.Identity.RefreshToken;
 

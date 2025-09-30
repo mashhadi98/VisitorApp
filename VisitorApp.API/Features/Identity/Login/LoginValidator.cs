@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace VisitorApp.API.Features.Identity.Login;
 

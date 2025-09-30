@@ -1,6 +1,5 @@
-using FastEndpoints;
 using VisitorApp.Application.Features.Identity.RefreshToken;
-using MediatR;
+using VisitorApp.Contract.Features.Identity.RefreshToken;
 
 namespace VisitorApp.API.Features.Identity.RefreshToken;
 
@@ -33,4 +32,4 @@ public class RefreshTokenEndpoint : Endpoint<RefreshTokenRequest, RefreshTokenCo
 
         await Send.OkAsync(result, ct);
     }
-} 
+}

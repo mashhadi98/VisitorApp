@@ -1,3 +1,5 @@
+using VisitorApp.Contract.Features.Catalog.Categories.Update;
+
 namespace VisitorApp.Application.Features.Catalog.Categories.Update;
 
 public class UpdateCategoryCommandRequest : IRequestBase<UpdateCategoryCommandResponse>

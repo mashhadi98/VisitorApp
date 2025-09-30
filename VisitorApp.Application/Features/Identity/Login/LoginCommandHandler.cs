@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using VisitorApp.Application.Features.Identity.Common;
+using VisitorApp.Contract.Features.Identity.Login;
 
 namespace VisitorApp.Application.Features.Identity.Login;
 

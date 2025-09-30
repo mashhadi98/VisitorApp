@@ -1,15 +1,15 @@
 using AutoMapper;
-using VisitorApp.Application.Features.Identity.Common;
-using VisitorApp.Application.Features.Identity.Users.Create;
-using VisitorApp.Application.Features.Identity.Users.Update;
-using VisitorApp.Application.Features.Identity.Users.GetById;
-using VisitorApp.Application.Features.Identity.Users.GetPaginated;
-using VisitorApp.Application.Features.Identity.Users.ChangeState;
-using VisitorApp.Application.Features.Identity.Roles.Create;
-using VisitorApp.Application.Features.Identity.Roles.Update;
-using VisitorApp.Application.Features.Identity.Roles.GetById;
-using VisitorApp.Application.Features.Identity.Roles.GetPaginated;
-using VisitorApp.Application.Features.Identity.Roles.ChangeState;
+using VisitorApp.Contract.Features.Identity.Common;
+using VisitorApp.Contract.Features.Identity.Users.Create;
+using VisitorApp.Contract.Features.Identity.Users.Update;
+using VisitorApp.Contract.Features.Identity.Users.GetById;
+using VisitorApp.Contract.Features.Identity.Users.GetPaginated;
+using VisitorApp.Contract.Features.Identity.Users.ChangeState;
+using VisitorApp.Contract.Features.Identity.Roles.Create;
+using VisitorApp.Contract.Features.Identity.Roles.Update;
+using VisitorApp.Contract.Features.Identity.Roles.GetById;
+using VisitorApp.Contract.Features.Identity.Roles.GetPaginated;
+using VisitorApp.Contract.Features.Identity.Roles.ChangeState;
 using VisitorApp.Domain.Features.Identity.Entities;
 
 namespace VisitorApp.Application.Features.Identity;
