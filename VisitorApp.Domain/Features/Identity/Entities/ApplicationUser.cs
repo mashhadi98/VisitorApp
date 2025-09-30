@@ -3,7 +3,7 @@ using VisitorApp.Domain.Common.Contracts;
 
 namespace VisitorApp.Domain.Features.Identity.Entities;
 
-public class ApplicationUser : IdentityUser<Guid>, IAuditable, IHasConcurrencyVersion
+public class ApplicationUser : IdentityUser<Guid>, IAuditable, IHasConcurrencyVersion, IEntity
 {
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
@@ -37,7 +37,7 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditable, IHasConcurrencyVe
     }
 
     public void SetUpdated() => UpdatedAt = DateTime.UtcNow;
-    
+
     public void UpdateProfile(string firstName, string lastName)
     {
         FirstName = firstName;
@@ -56,7 +56,7 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditable, IHasConcurrencyVe
         IsActive = true;
         SetUpdated();
     }
-    
+
     // Navigation property for refresh tokens
     public ICollection<UserRefreshToken> RefreshTokens { get; set; } = new List<UserRefreshToken>();
-} 
+}

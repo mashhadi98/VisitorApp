@@ -33,6 +33,10 @@
 
 	<ItemGroup>
 		<Folder Include="Features\Catalog\Constants\" />
+		<Folder Include="Features\Catalog\Orders\Services\" />
+		<Folder Include="Features\Catalog\Orders\Specifications\" />
+		<Folder Include="Features\Catalog\Customers\Services\" />
+		<Folder Include="Features\Catalog\Customers\Specifications\" />
 		<Folder Include="Features\Catalog\Products\Specifications\" />
 		<Folder Include="Migrations\" />
 	</ItemGroup>

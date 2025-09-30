@@ -1,0 +1,58 @@
+### Variables
+@baseUrl = https://localhost:7101
+@customerId = {{CreateCustomer.response.body.data.id}}
+
+### 1. Create Customer
+POST {{baseUrl}}/api/Customers
+Content-Type: application/json
+
+{
+  "fullName": "علی احمدی",
+  "phoneNumber": "09123456789",
+  "companyName": "شرکت نمونه",
+  "isTemporary": false
+}
+
+### 2. Create Temporary Customer
+POST {{baseUrl}}/api/Customers
+Content-Type: application/json
+
+{
+  "fullName": "مشتری متفرقه",
+  "phoneNumber": "09111111111",
+  "isTemporary": true
+}
+
+### 3. Get Customer by ID
+GET {{baseUrl}}/api/Customers/{{customerId}}
+
+### 4. Update Customer
+PUT {{baseUrl}}/api/Customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerId}}",
+  "fullName": "علی احمدی (ویرایش شده)",
+  "phoneNumber": "09123456789",
+  "companyName": "شرکت جدید",
+  "isTemporary": false
+}
+
+### 5. Get Paginated Customers
+GET {{baseUrl}}/api/Customers?page=1&pageSize=10
+
+### 6. Get Paginated Customers with Filter
+GET {{baseUrl}}/api/Customers
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 10,
+  "filter": {
+    "fullName": "علی",
+    "isTemporary": false
+  }
+}
+
+### 7. Delete Customer
+DELETE {{baseUrl}}/api/Customers/{{customerId}}

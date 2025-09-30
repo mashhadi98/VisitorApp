@@ -1,6 +1,4 @@
-﻿using VisitorApp.Domain.Common.DTOs;
-using VisitorApp.Domain.Common.Entities;
-using System.Linq.Expressions;
+﻿using VisitorApp.Domain.Common.Entities;
 
 namespace VisitorApp.Application.Common.Interfaces;
 

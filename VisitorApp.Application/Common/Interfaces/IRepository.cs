@@ -1,6 +1,7 @@
 ﻿using VisitorApp.Domain.Common.Entities;
 
 namespace VisitorApp.Application.Common.Interfaces;
+
 public interface IRepository<T, TKey> : IWriteRepository<T, TKey>, IReadRepository<T, TKey>
     where T : EntityBase<TKey>
 {

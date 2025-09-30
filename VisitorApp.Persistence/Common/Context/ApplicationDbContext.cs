@@ -4,6 +4,8 @@ using VisitorApp.Domain.Features.Catalog.Entities;
 using VisitorApp.Domain.Features.Identity.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using VisitorApp.Domain.Features.Customers.Entities;
+using VisitorApp.Domain.Features.Orders.Entities;
 
 namespace VisitorApp.Persistence.Common.Context;
 
@@ -20,6 +22,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<AuditLog> AuditLogs { get; set; } = default!;
     public DbSet<Product> Products { get; set; } = default!;
     public DbSet<Category> Categories { get; set; } = default!;
+    public DbSet<Customer> Customers { get; set; } = default!;
+    public DbSet<Order> Orders { get; set; } = default!;
+    public DbSet<OrderItem> OrderItems { get; set; } = default!;
     public DbSet<UserRefreshToken> UserRefreshTokens { get; set; } = default!;
 
 

@@ -1,0 +1,109 @@
+### Variables
+@baseUrl = https://localhost:7101
+@orderId = {{CreateOrder.response.body.data.orderId}}
+
+### 1. Get Dashboard Summary
+GET {{baseUrl}}/api/dashboard/summary
+
+### 2. Get Dashboard Summary for Specific Month
+GET {{baseUrl}}/api/dashboard/summary?month=2025-09
+
+### 3. Quick Order - با مشتری جدید
+POST {{baseUrl}}/api/Orders/quick
+Content-Type: application/json
+
+{
+  "newCustomer": {
+    "fullName": "مشتری تست سریع",
+    "phoneNumber": "09123456789",
+    "companyName": "شرکت تست",
+    "isTemporary": false
+  },
+  "items": [
+    {
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 2,
+      "unitPrice": 1500000
+    }
+  ],
+  "note": "سفارش تستی"
+}
+
+### 4. Quick Order - با مشتری موجود
+POST {{baseUrl}}/api/Orders/quick
+Content-Type: application/json
+
+{
+  "customerId": "00000000-0000-0000-0000-000000000000",
+  "items": [
+    {
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 1,
+      "unitPrice": 2500000
+    }
+  ]
+}
+
+### 5. Quick Order - ثبت سفارش به نام کاربر دیگر (فقط Admin)
+POST {{baseUrl}}/api/Orders/quick
+Content-Type: application/json
+
+{
+  "userId": "00000000-0000-0000-0000-000000000000",
+  "customerId": "00000000-0000-0000-0000-000000000000",
+  "items": [
+    {
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 3,
+      "unitPrice": 1800000
+    }
+  ]
+}
+
+### 6. Get Sales Monthly Report (6 ماه اخیر)
+GET {{baseUrl}}/api/reports/sales/monthly?months=6
+
+### 7. Get Sales Monthly Report (سفارشی)
+GET {{baseUrl}}/api/reports/sales/monthly?months=12&year=2025
+
+### 8. Confirm Order
+POST {{baseUrl}}/api/Orders/{{orderId}}/confirm
+
+### 9. Cancel Order
+POST {{baseUrl}}/api/Orders/{{orderId}}/cancel
+
+### 10. Get Order Details (برای بررسی وضعیت)
+GET {{baseUrl}}/api/Orders/{{orderId}}
+
+### 11. Complete Dashboard Flow
+# 1. دریافت خلاصه داشبورد
+GET {{baseUrl}}/api/dashboard/summary
+
+###
+# 2. ثبت سریع سفارش
+POST {{baseUrl}}/api/Orders/quick
+Content-Type: application/json
+
+{
+  "newCustomer": {
+    "fullName": "احمد رضایی",
+    "phoneNumber": "09121234567",
+    "isTemporary": false
+  },
+  "items": [
+    {
+      "productId": "PASTE_PRODUCT_ID_HERE",
+      "quantity": 2,
+      "unitPrice": 1500000
+    }
+  ]
+}
+
+###
+# 3. تایید سفارش
+POST {{baseUrl}}/api/Orders/PASTE_ORDER_ID_HERE/confirm
+
+###
+# 4. مشاهده گزارش فروش
+GET {{baseUrl}}/api/reports/sales/monthly?months=6
+

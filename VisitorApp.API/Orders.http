@@ -1,0 +1,133 @@
+### Variables
+@baseUrl = https://localhost:7101
+@customerId = 00000000-0000-0000-0000-000000000000
+@productId = 00000000-0000-0000-0000-000000000000
+@orderId = {{CreateOrder.response.body.data.id}}
+
+### 1. Create Order with Items
+POST {{baseUrl}}/api/Orders
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "orderDate": "2025-09-30T10:00:00Z",
+  "status": 0,
+  "items": [
+    {
+      "productId": "{{productId}}",
+      "quantity": 2,
+      "unitPrice": 1500000
+    },
+    {
+      "productId": "{{productId}}",
+      "quantity": 1,
+      "unitPrice": 2500000
+    }
+  ]
+}
+
+### 2. Get Order by ID (با لیست آیتم‌ها)
+GET {{baseUrl}}/api/Orders/{{orderId}}
+
+### 3. Update Order with Items
+PUT {{baseUrl}}/api/Orders/{{orderId}}
+Content-Type: application/json
+
+{
+  "id": "{{orderId}}",
+  "customerId": "{{customerId}}",
+  "orderDate": "2025-09-30T10:00:00Z",
+  "status": 1,
+  "items": [
+    {
+      "productId": "{{productId}}",
+      "quantity": 3,
+      "unitPrice": 1500000
+    },
+    {
+      "productId": "{{productId}}",
+      "quantity": 2,
+      "unitPrice": 2500000
+    }
+  ]
+}
+
+### 4. Get Paginated Orders
+GET {{baseUrl}}/api/Orders?page=1&pageSize=10
+
+### 5. Get Paginated Orders with Filter
+GET {{baseUrl}}/api/Orders
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 10,
+  "filter": {
+    "customerId": "{{customerId}}",
+    "status": 0,
+    "orderDateFrom": "2025-09-01T00:00:00Z",
+    "orderDateTo": "2025-09-30T23:59:59Z"
+  }
+}
+
+### 6. Get Orders by Status
+GET {{baseUrl}}/api/Orders
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 10,
+  "filter": {
+    "status": 0
+  }
+}
+
+### 7. Get My Orders (سفارشات کاربر جاری)
+GET {{baseUrl}}/api/Orders/my-orders?page=1&pageSize=10
+
+### 8. Get My Orders with Filter
+GET {{baseUrl}}/api/Orders/my-orders
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 10,
+  "filter": {
+    "status": 0,
+    "orderDateFrom": "2025-09-01T00:00:00Z",
+    "orderDateTo": "2025-09-30T23:59:59Z"
+  }
+}
+
+### 9. Delete Order
+DELETE {{baseUrl}}/api/Orders/{{orderId}}
+
+### 10. Complete Flow Example
+# ابتدا یک مشتری ایجاد کنید
+POST {{baseUrl}}/api/Customers
+Content-Type: application/json
+
+{
+  "fullName": "رضا محمدی",
+  "phoneNumber": "09121234567",
+  "companyName": "شرکت تست",
+  "isTemporary": false
+}
+
+###
+# سپس با استفاده از customerId و productId واقعی، سفارش ایجاد کنید
+POST {{baseUrl}}/api/Orders
+Content-Type: application/json
+
+{
+  "customerId": "PASTE_CUSTOMER_ID_HERE",
+  "orderDate": "2025-09-30T10:00:00Z",
+  "status": 0,
+  "items": [
+    {
+      "productId": "PASTE_PRODUCT_ID_HERE",
+      "quantity": 2,
+      "unitPrice": 1500000
+    }
+  ]
+}

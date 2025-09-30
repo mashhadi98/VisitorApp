@@ -2,7 +2,7 @@
 
 namespace VisitorApp.Domain.Common.Entities;
 
-public abstract class Entity : EntityWithAudit<Guid>, IHasConcurrencyVersion
+public abstract class Entity : EntityWithAudit<Guid>, IHasConcurrencyVersion, IEntity
 {
     protected Entity()
     {

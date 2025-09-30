@@ -6,8 +6,8 @@ public class AutoRequestProfile : Profile
 {
     public AutoRequestProfile()
     {
-        var apiAssembly = Assembly.GetAssembly(typeof(AssemblyReference));         // اسمبلی API
-        var appAssembly = Assembly.GetAssembly(typeof(Application.AssemblyReference)); // اسمبلی Application
+        var contractAssembly = Assembly.GetAssembly(typeof(Contract.AssemblyReference));     // اسمبلی Contract
+        var appAssembly = Assembly.GetAssembly(typeof(Application.AssemblyReference));       // اسمبلی Application
 
         var appRequests = appAssembly.GetTypes()
             .Where(t => t.IsClass && t.Name.EndsWith("Request"))
@@ -19,7 +19,7 @@ public class AutoRequestProfile : Profile
             {
                 var commandName = request.Name.Replace("CommandRequest", "Request");
 
-                var commandType = apiAssembly.GetTypes()
+                var commandType = contractAssembly.GetTypes()
                     .FirstOrDefault(t => t.IsClass && t.Name == commandName);
 
                 if (commandType != null)
@@ -32,7 +32,7 @@ public class AutoRequestProfile : Profile
             {
                 var endpointName = request.Name.Replace("QueryRequest", "Request");
 
-                var endpointType = apiAssembly.GetTypes()
+                var endpointType = contractAssembly.GetTypes()
                     .FirstOrDefault(t => t.IsClass && t.Name == endpointName);
 
                 if (endpointType != null)
