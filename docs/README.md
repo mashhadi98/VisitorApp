@@ -4,6 +4,11 @@
 
 VisitorApp یک پروژه **Clean Architecture** است که بر اساس بهترین practices و اصول SOLID طراحی شده است. این پروژه از CQRS pattern، Repository pattern و FastEndpoints استفاده می‌کند.
 
+## قوانین اجباری
+- قبل از شروع تسک‌ها، اسناد `VisitorApp.Api/docs` را مطالعه کنید.
+- پس از اتمام هر تسک، اسناد مرتبط را به‌روزرسانی کنید.
+- پس از هر تسک، پروژه را build کنید و خطاها را رفع کنید.
+
 ## 📋 فهرست مطالب
 
 ### 📚 مستندات اصلی
@@ -11,6 +16,7 @@ VisitorApp یک پروژه **Clean Architecture** است که بر اساس به
 2. [**استانداردهای کد نویسی**](./02-Code-Standards.md) - قوانین و استانداردهای کد نویسی
 3. [**ساختار پروژه**](./03-Project-Structure.md) - توضیح کامل ساختار فایل‌ها و پوشه‌ها
 4. [**راهنمای توسعه**](./04-Development-Guidelines.md) - فرآیندها و workflows
+5. [**قرارداد پاسخ API**](./API-Response-Contract.md) - ساختار استاندارد پاسخ‌ها
 
 ## 🚀 شروع سریع
 
@@ -148,78 +154,6 @@ else
     throw new Exception(result.Error.Message);
 ```
 
-## 📋 استانداردهای کد نویسی
-
-### نام‌گذاری
-- **Classes/Interfaces**: `PascalCase` (ProductService, IProductService)
-- **Methods/Properties**: `PascalCase` (GetById, ProductName)
-- **Variables/Parameters**: `camelCase` (productId, customerName)
-- **Constants**: `UPPER_SNAKE_CASE` (MAX_RETRY_COUNT)
-
-### اصول SOLID
-- ✅ **SRP**: هر کلاس یک مسئولیت
-- ✅ **OCP**: بسته برای تغییر، باز برای توسعه
-- ✅ **LSP**: کلاس‌های فرزند قابل جایگزینی با والد
-- ✅ **ISP**: رابط‌های کوچک و مشخص
-- ✅ **DIP**: وابستگی به انتزاع، نه پیاده‌سازی
-
-### کدنویسی
-```csharp
-// ✅ استفاده از var
-var product = new Product();
-
-// ✅ Expression-bodied members
-public string FullName => $"{FirstName} {LastName}";
-
-// ✅ String interpolation
-var message = $"Product {name} created with price ${price:F2}";
-
-// ✅ Primary constructors
-public class ProductService(IRepository<Product> repository, IMapper mapper)
-{
-    // Implementation
-}
-
-// ✅ Return empty collections
-public IEnumerable<Product> GetProducts() => products ?? [];
-```
-
-## 🧪 تست‌نویسی
-
-### Unit Tests
-```csharp
-[Test]
-public async Task CreateProduct_ValidRequest_ShouldReturnSuccess()
-{
-    // Arrange
-    var request = new CreateProductRequest { Name = "Test", Price = 100 };
-    var handler = new CreateProductHandler(repository, mapper);
-
-    // Act
-    var result = await handler.Handle(request, CancellationToken.None);
-
-    // Assert
-    Assert.That(result.IsSuccess, Is.True);
-    Assert.That(result.Value.Name, Is.EqualTo("Test"));
-}
-```
-
-### Integration Tests
-```csharp
-[Test]
-public async Task CreateProduct_API_ShouldReturn201()
-{
-    // Arrange
-    var request = new { Name = "Test Product", Price = 150 };
-
-    // Act
-    var response = await Client.PostAsJsonAsync("/api/products", request);
-
-    // Assert
-    Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
-}
-```
-
 ## 📊 Performance & Monitoring
 
 ### Logging با Serilog [[memory:8258441]]
@@ -241,26 +175,6 @@ var pagedProducts = await context.Products
     .Skip((page - 1) * pageSize)
     .Take(pageSize)
     .ToListAsync();
-```
-
-## 🚀 Deployment
-
-### Docker
-```bash
-# Build image
-docker build -t VisitorApp-api .
-
-# Run container
-docker run -p 5000:80 VisitorApp-api
-```
-
-### Database Migrations
-```bash
-# Add migration
-dotnet ef migrations add MigrationName --project VisitorApp.Persistence
-
-# Update database
-dotnet ef database update --project VisitorApp.Persistence --startup-project VisitorApp.API
 ```
 
 ## 📈 CI/CD
@@ -318,6 +232,7 @@ refactor(domain): improve entity structure
 - [استانداردهای کد](./02-Code-Standards.md) - قوانین کدنویسی
 - [ساختار پروژه](./03-Project-Structure.md) - سازماندهی فایل‌ها
 - [راهنمای توسعه](./04-Development-Guidelines.md) - فرآیندها و workflows
+- [قرارداد پاسخ API](./API-Response-Contract.md) - ساختار استاندارد پاسخ‌ها
 
 ### مستندات خارجی
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)

@@ -1,5 +1,15 @@
 # راهنمای توسعه (Development Guidelines)
 
+## قوانین اجباری جریان کار
+- قبل از شروع هر تسک: مستندات `VisitorApp.Api/docs` را مرور کنید (حداقل: `README.md`, `01-Architecture-Overview.md`, `03-Project-Structure.md`, `04-Development-Guidelines.md`).
+- پس از اتمام هر تسک: مستندات مرتبط را به‌روزرسانی کنید (Endpoints، تنظیمات، مهاجرت‌ها).
+- پس از هر تسک: پروژه را build کنید و خطاها را رفع کنید:
+```bash
+dotnet restore
+dotnet build VisitorApp.sln -c Release
+dotnet test --no-build -c Release # در صورت وجود تست
+```
+
 ## نمای کلی
 
 این سند فرآیندها، ابزارها و راهنمای قدم به قدم برای توسعه در این پروژه را ارائه می‌دهد. هدف تضمین کیفیت، سازگاری و بهره‌وری در فرآیند توسعه است.
