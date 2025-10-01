@@ -16,7 +16,12 @@ public class CreateCategoryCommandHandler(IRepository<Category> repository, IMap
 
         await repository.AddAsync(entity: item, autoSave: true, cancellationToken: cancellationToken);
 
-        var result = _mapper.Map<CreateCategoryCommandResponse>(item);
-        return result;
+        return new CreateCategoryCommandResponse
+        {
+            Description = item.Description,
+            Id = item.Id,
+            IsActive = item.IsActive,
+            Name = item.Name
+        };
     }
 } 

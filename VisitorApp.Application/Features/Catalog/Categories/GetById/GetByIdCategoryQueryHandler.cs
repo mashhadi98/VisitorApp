@@ -14,8 +14,14 @@ public class GetByIdCategoryQueryHandler(IRepository<Category> repository, IMapp
             throw new ArgumentException("Category not found", nameof(request.Id));
         }
 
-        var result = _mapper.Map<GetByIdCategoryQueryResponse>(item);
-
-        return result;
+        return new GetByIdCategoryQueryResponse
+        {
+            CreatedAt = item.CreatedAt,
+            Description = item.Description,
+            Id = item.Id,
+            IsActive = item.IsActive,
+            Name = item.Name,
+            UpdatedAt = item.UpdatedAt
+        };
     }
-} 
+}
