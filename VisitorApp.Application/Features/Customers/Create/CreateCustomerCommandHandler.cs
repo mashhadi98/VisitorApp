@@ -16,7 +16,7 @@ public class CreateCustomerCommandHandler(
             FullName = request.FullName,
             PhoneNumber = request.PhoneNumber,
             CompanyName = request.CompanyName,
-            IsTemporary = request.IsTemporary
+            IsTemporary = true
         };
 
         await repository.AddAsync(entity: customer, autoSave: true, cancellationToken: cancellationToken);

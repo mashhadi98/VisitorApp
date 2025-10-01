@@ -7,5 +7,4 @@ public class CreateCustomerCommandRequest : IRequestBase<CreateCustomerCommandRe
     public string FullName { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
     public string? CompanyName { get; set; }
-    public bool IsTemporary { get; set; }
 }
