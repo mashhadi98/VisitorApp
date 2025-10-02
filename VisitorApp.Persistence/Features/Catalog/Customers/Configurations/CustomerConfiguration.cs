@@ -27,6 +27,12 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .IsRequired()
             .HasDefaultValue(false);
 
+        // برای مشتریان دائمی، شماره تلفن باید یکتا باشد
+        // برای مشتریان متفرقه محدودیتی نیست
+        builder.HasIndex(c => c.PhoneNumber)
+            .HasFilter("[IsTemporary] = 0")
+            .IsUnique();
+
         // Relationship with Orders
         builder.HasMany(c => c.Orders)
             .WithOne(o => o.Customer)
