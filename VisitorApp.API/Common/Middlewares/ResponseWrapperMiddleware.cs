@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using VisitorApp.API.Common.Models;
 
 namespace VisitorApp.API.Common.Middlewares;
@@ -16,6 +16,27 @@ public class ResponseWrapperMiddleware
         this.next = next;
         this.logger = logger;
     }
+
+    private static readonly HashSet<string> StaticExtensions = new(StringComparer.OrdinalIgnoreCase)
+    {
+        // Images
+        ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico", ".bmp", ".tif", ".tiff", ".avif",
+        // Fonts
+        ".woff", ".woff2", ".ttf", ".otf", ".eot",
+        // Scripts & Styles
+        ".js", ".mjs", ".map", ".css",
+        // Docs & other binaries
+        ".pdf", ".txt", ".zip", ".rar",
+        // Videos/Audios (اگر داشتی)
+        ".mp4", ".webm", ".ogg", ".mp3", ".wav"
+    };
+
+    private static readonly string[] KnownStaticSegments =
+    {
+        "/swagger", "/health", "/_framework",
+        "/css", "/js", "/images", "/img", "/uploads",
+        "/favicon.ico"
+    };
 
     public async Task InvokeAsync(HttpContext context)
     {
@@ -96,17 +117,46 @@ public class ResponseWrapperMiddleware
         await context.Response.WriteAsync(wrappedResponse);
     }
 
-    private static bool ShouldSkipWrapping(HttpContext context)
+    public static bool ShouldSkipWrapping(HttpContext context)
     {
-        var path = context.Request.Path.Value?.ToLowerInvariant();
-        
-        // Skip wrapping for swagger, health checks, static files, etc.
-        return path?.Contains("/swagger") == true ||
-               path?.Contains("/health") == true ||
-               path?.Contains("/_framework") == true ||
-               path?.Contains("/css") == true ||
-               path?.Contains("/js") == true ||
-               path?.Contains("/images") == true ||
-               context.Response.ContentType?.Contains("text/html") == true;
+        var path = context.Request.Path.Value ?? string.Empty;
+        var lower = path.ToLowerInvariant();
+
+        // 1) مسیرهای شناخته‌شده‌ی استاتیک
+        if (KnownStaticSegments.Any(s => lower.Contains(s)))
+            return true;
+
+        // 2) بر اساس پسوند فایل (تصویر، فونت، css/js و …)
+        if (Path.HasExtension(path))
+        {
+            var ext = Path.GetExtension(path);
+            if (!string.IsNullOrEmpty(ext) && StaticExtensions.Contains(ext))
+                return true;
+        }
+
+        // 3) اگر کلاینت explicitly فقط تصویر خواسته (Accept header)
+        //    (در APIهای فایل‌محور مفید است)
+        if (context.Request.Headers.TryGetValue("Accept", out var accept) &&
+            accept.Any(a => a.Contains("image/", StringComparison.OrdinalIgnoreCase)))
+        {
+            return true;
+        }
+
+        // 4) اگر از قبل ContentType ست شده و باینری/تصویری است
+        if (!string.IsNullOrEmpty(context.Response.ContentType) &&
+            (context.Response.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) ||
+             context.Response.ContentType.StartsWith("font/", StringComparison.OrdinalIgnoreCase) ||
+             context.Response.ContentType.StartsWith("text/css", StringComparison.OrdinalIgnoreCase) ||
+             context.Response.ContentType.StartsWith("text/javascript", StringComparison.OrdinalIgnoreCase) ||
+             context.Response.ContentType.StartsWith("application/javascript", StringComparison.OrdinalIgnoreCase)))
+        {
+            return true;
+        }
+
+        // 5) صفحات Razor/HTML را هم wrap نکن (در صورت نیاز)
+        if (context.Response.ContentType?.Contains("text/html", StringComparison.OrdinalIgnoreCase) == true)
+            return true;
+
+        return false;
     }
 } 
