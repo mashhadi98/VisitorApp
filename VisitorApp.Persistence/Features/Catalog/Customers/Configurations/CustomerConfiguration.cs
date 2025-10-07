@@ -10,6 +10,8 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder.ToTable("Customers");
 
+        builder.HasQueryFilter(d => d.RemovedAt == null);
+
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.FullName)

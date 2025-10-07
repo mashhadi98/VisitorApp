@@ -10,6 +10,8 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
     {
         builder.ToTable("OrderItems");
 
+        builder.HasQueryFilter(d => d.RemovedAt == null);
+
         builder.HasKey(oi => oi.Id);
 
         builder.Property(oi => oi.Quantity)
