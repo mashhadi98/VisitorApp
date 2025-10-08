@@ -15,8 +15,6 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         builder.HasQueryFilter(d => d.RemovedAt == null);
 
-        builder.HasQueryFilter(d => d.RemovedAt == null);
-
         builder.HasKey(d => d.Id);
 
         builder.Property(d => d.Name)

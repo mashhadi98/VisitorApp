@@ -53,7 +53,8 @@ public class CreateOrderCommandHandler(
 
             var orderItem = new OrderItem
             {
-                OrderId = order.Id,
+                // Don't set OrderId explicitly - let EF Core handle the relationship
+                // OrderId will be set automatically when we add the item to order.Items collection
                 ProductId = itemDto.ProductId,
                 Quantity = itemDto.Quantity,
                 UnitPrice = itemDto.UnitPrice
@@ -101,11 +102,7 @@ public class CreateOrderCommandHandler(
 
     private async Task<string> GenerateOrderNumber(CancellationToken cancellationToken)
     {
-        var lastOrder = await orderRepository.GetQuery()
-            .OrderByDescending(o => o.CreatedAt)
-            .FirstOrDefaultAsync(cancellationToken);
-
-        var orderCount = await orderRepository.GetQuery().CountAsync(cancellationToken);
+        var orderCount = await orderRepository.GetQuery().IgnoreQueryFilters().CountAsync(cancellationToken);
         var nextNumber = orderCount + 1;
 
         return $"#{nextNumber:D5}";
